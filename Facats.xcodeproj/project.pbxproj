@@ -17,6 +17,7 @@
 		546F594724E4258C00CFCCC3 /* CuriosityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F594624E4258C00CFCCC3 /* CuriosityViewController.swift */; };
 		546F594924E4259C00CFCCC3 /* BreedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F594824E4259C00CFCCC3 /* BreedsViewController.swift */; };
 		546F594E24E42A1600CFCCC3 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F594D24E42A1600CFCCC3 /* Colors.swift */; };
+		54EB896624E6B62F00CB476A /* CuriosityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB896524E6B62F00CB476A /* CuriosityCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		546F594624E4258C00CFCCC3 /* CuriosityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuriosityViewController.swift; sourceTree = "<group>"; };
 		546F594824E4259C00CFCCC3 /* BreedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsViewController.swift; sourceTree = "<group>"; };
 		546F594D24E42A1600CFCCC3 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		54EB896524E6B62F00CB476A /* CuriosityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuriosityCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 		546F594B24E426C600CFCCC3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				54EB896524E6B62F00CB476A /* CuriosityCard.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				546F594E24E42A1600CFCCC3 /* Colors.swift in Sources */,
 				546F594524E4252B00CFCCC3 /* TabBarViewController.swift in Sources */,
 				546F591524E4231000CFCCC3 /* AppDelegate.swift in Sources */,
+				54EB896624E6B62F00CB476A /* CuriosityCard.swift in Sources */,
 				546F594724E4258C00CFCCC3 /* CuriosityViewController.swift in Sources */,
 				546F591724E4231000CFCCC3 /* SceneDelegate.swift in Sources */,
 			);

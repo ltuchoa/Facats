@@ -11,18 +11,19 @@ import UIKit
 class CuriosityViewController: UIViewController {
 
     var background = UIImageView()
+    var curiosityCard = CuriosityCard(frame: CGRect(x: 15, y: 374, width: 383, height: 148))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         setupBackground()
+        
+        setupCuriosityCard()
     }
     
 
     func setupBackground() {
-        
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
         background = UIImageView(image: UIImage(named: "background"))
         
@@ -32,9 +33,21 @@ class CuriosityViewController: UIViewController {
         NSLayoutConstraint.activate([
             background.topAnchor.constraint(equalTo: view.topAnchor),
             background.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            background.leftAnchor.constraint(equalTo: view.leftAnchor),
-            background.rightAnchor.constraint(equalTo: view.rightAnchor)
+            background.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            background.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             ])
     }
 
+    func setupCuriosityCard() {
+        background.addSubview(curiosityCard)
+        
+        curiosityCard.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            curiosityCard.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 10),
+            curiosityCard.heightAnchor.constraint(equalToConstant: 145),
+            curiosityCard.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            curiosityCard.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+        ])
+    }
+    
 }
