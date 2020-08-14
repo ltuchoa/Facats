@@ -10,6 +10,8 @@ import UIKit
 
 class CuriosityViewController: UIViewController {
 
+    var background = UIImageView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,8 +22,19 @@ class CuriosityViewController: UIViewController {
 
     func setupBackground() {
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
+        background = UIImageView(image: UIImage(named: "background"))
+        
+        self.view.addSubview(background)
+        
+        background.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            background.topAnchor.constraint(equalTo: view.topAnchor),
+            background.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            background.leftAnchor.constraint(equalTo: view.leftAnchor),
+            background.rightAnchor.constraint(equalTo: view.rightAnchor)
+            ])
     }
 
 }
