@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		542DFA3224E80EA600ED9388 /* Fact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542DFA3124E80EA600ED9388 /* Fact.swift */; };
 		546F591524E4231000CFCCC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F591424E4231000CFCCC3 /* AppDelegate.swift */; };
 		546F591724E4231000CFCCC3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F591624E4231000CFCCC3 /* SceneDelegate.swift */; };
 		546F591E24E4231300CFCCC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 546F591D24E4231300CFCCC3 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		542DFA3124E80EA600ED9388 /* Fact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fact.swift; sourceTree = "<group>"; };
 		546F591124E4231000CFCCC3 /* Facats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Facats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		546F591424E4231000CFCCC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		546F591624E4231000CFCCC3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		546F594A24E426B800CFCCC3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				542DFA3124E80EA600ED9388 /* Fact.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				546F594924E4259C00CFCCC3 /* BreedsViewController.swift in Sources */,
 				546F594E24E42A1600CFCCC3 /* Colors.swift in Sources */,
 				546F594524E4252B00CFCCC3 /* TabBarViewController.swift in Sources */,
+				542DFA3224E80EA600ED9388 /* Fact.swift in Sources */,
 				546F591524E4231000CFCCC3 /* AppDelegate.swift in Sources */,
 				54EB896624E6B62F00CB476A /* CuriosityCard.swift in Sources */,
 				546F594724E4258C00CFCCC3 /* CuriosityViewController.swift in Sources */,

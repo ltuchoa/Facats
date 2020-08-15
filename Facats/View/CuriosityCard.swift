@@ -20,15 +20,14 @@ class CuriosityCard: UIView {
         setupBackground()
         setupFact()
         setupFactConstraint()
-        set()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set() {
-        fact.text = "Cats and humans have nearly identical sections of the brain that control emotion."
+    func set(text: String) {
+        fact.text = text
     }
     
     func setupBackground() {

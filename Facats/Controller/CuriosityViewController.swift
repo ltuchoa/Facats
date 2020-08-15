@@ -12,14 +12,21 @@ class CuriosityViewController: UIViewController {
 
     var background = UIImageView()
     var curiosityCard = CuriosityCard(frame: CGRect(x: 15, y: 374, width: 383, height: 148))
+    let apiUrl = "https://cat-fact.herokuapp.com/facts"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         navigationController?.setNavigationBarHidden(true, animated: false)
         setupBackground()
         
         setupCuriosityCard()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.getData(from: self.apiUrl)
+        }
     }
     
 
@@ -48,6 +55,31 @@ class CuriosityViewController: UIViewController {
             curiosityCard.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             curiosityCard.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
+    }
+    
+    private func getData(from apiUrl: String) -> Void {
+        let task = URLSession.shared.dataTask(with: URL(string: apiUrl)!, completionHandler: { data, response, error in
+            
+            guard let data = data, error == nil else {
+                print("Something went Wrong")
+                return
+            }
+            
+            var facts: Facts?
+            
+            do {
+                facts = try JSONDecoder().decode(Facts.self, from: data)
+            } catch {
+                print("Failed to convert \(error.localizedDescription)")
+            }
+
+            let size = facts?.all.count
+            let random = Int.random(in: 0...size!)
+
+            self.curiosityCard.set(text: facts?.all[random].text ?? "ih")
+            
+        })
+        task.resume()
     }
     
 }
