@@ -71,10 +71,10 @@ class CuriosityViewController: UIViewController {
                 print("Failed to convert \(error.localizedDescription)")
             }
 
-            let size = facts?.all.count
-            let random = Int.random(in: 0...size!)
+            let size = (facts?.all.count)! - 20
+            let random = Int.random(in: 0...size)
 
-            self.curiosityCard.set(text: facts?.all[random].text ?? "ih")
+            self.curiosityCard.set(text: facts?.all[random].text ?? "Error")
             
         })
         task.resume()
