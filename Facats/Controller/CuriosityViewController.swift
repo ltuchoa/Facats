@@ -22,9 +22,7 @@ class CuriosityViewController: UIViewController {
         
         setupCuriosityCard()
         
-        DispatchQueue.main.async {
-            self.getData(from: self.apiUrl)
-        }
+        getData(from: apiUrl)
     }
     
 
@@ -74,7 +72,9 @@ class CuriosityViewController: UIViewController {
             let size = (facts?.all.count)! - 20
             let random = Int.random(in: 0...size)
 
-            self.curiosityCard.set(text: facts?.all[random].text ?? "Error")
+            DispatchQueue.main.async {
+                 self.curiosityCard.set(text: facts?.all[random].text ?? "Error")
+            }
             
         })
         task.resume()
