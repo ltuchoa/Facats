@@ -21,9 +21,7 @@ class CuriosityViewController: UIViewController {
         setupBackground()
         
         setupCuriosityCard()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
         DispatchQueue.main.async {
             self.getData(from: self.apiUrl)
         }
