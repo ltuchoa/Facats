@@ -12,6 +12,7 @@ class BreedsViewController: UIViewController {
 
     var segmentedControl = UISegmentedControl()
     var searchBar = UISearchBar()
+    var tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class BreedsViewController: UIViewController {
         
         setupSegmentedControl()
         setupSearchBar()
+        setupTableView()
         
         let tap: UIGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -61,6 +63,42 @@ class BreedsViewController: UIViewController {
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8)
         ])
+    }
+    
+    func setupTableView() {
+        view.addSubview(tableView)
+        setTableViewDelegates()
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 8),
+            tableView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        tableView.register(BreedsTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.rowHeight = 55
+    }
+    
+    func setTableViewDelegates() {
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+    
+}
+
+
+extension BreedsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! BreedsTableViewCell
+        cell.selectionStyle = .none
+        cell.set()
+        return cell
     }
     
 }
