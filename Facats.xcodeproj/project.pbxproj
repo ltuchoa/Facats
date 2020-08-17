@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		541DD80824EAAD68005B5B6A /* BreedsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541DD80724EAAD68005B5B6A /* BreedsTableViewCell.swift */; };
+		541DD80A24EABEEF005B5B6A /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541DD80924EABEEF005B5B6A /* DescriptionViewController.swift */; };
 		542DFA3224E80EA600ED9388 /* Fact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542DFA3124E80EA600ED9388 /* Fact.swift */; };
 		546F591524E4231000CFCCC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F591424E4231000CFCCC3 /* AppDelegate.swift */; };
 		546F591724E4231000CFCCC3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546F591624E4231000CFCCC3 /* SceneDelegate.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		541DD80724EAAD68005B5B6A /* BreedsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsTableViewCell.swift; sourceTree = "<group>"; };
+		541DD80924EABEEF005B5B6A /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		542DFA3124E80EA600ED9388 /* Fact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fact.swift; sourceTree = "<group>"; };
 		546F591124E4231000CFCCC3 /* Facats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Facats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		546F591424E4231000CFCCC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				546F594424E4252B00CFCCC3 /* TabBarViewController.swift */,
 				546F594624E4258C00CFCCC3 /* CuriosityViewController.swift */,
 				546F594824E4259C00CFCCC3 /* BreedsViewController.swift */,
+				541DD80924EABEEF005B5B6A /* DescriptionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				546F594924E4259C00CFCCC3 /* BreedsViewController.swift in Sources */,
 				546F594E24E42A1600CFCCC3 /* Colors.swift in Sources */,
 				546F594524E4252B00CFCCC3 /* TabBarViewController.swift in Sources */,
+				541DD80A24EABEEF005B5B6A /* DescriptionViewController.swift in Sources */,
 				541DD80824EAAD68005B5B6A /* BreedsTableViewCell.swift in Sources */,
 				542DFA3224E80EA600ED9388 /* Fact.swift in Sources */,
 				546F591524E4231000CFCCC3 /* AppDelegate.swift in Sources */,

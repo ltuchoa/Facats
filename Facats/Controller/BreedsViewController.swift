@@ -25,12 +25,6 @@ class BreedsViewController: UIViewController {
         setupSearchBar()
         setupTableView()
         
-        let tap: UIGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
     
     func setupSegmentedControl() {
@@ -99,6 +93,12 @@ extension BreedsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         cell.set()
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nextViewController = DescriptionViewController()
+        
+        navigationController?.pushViewController(nextViewController, animated: true)
     }
     
 }
