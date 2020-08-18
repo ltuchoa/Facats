@@ -28,9 +28,9 @@ class BreedsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set() {
+    func set(breed: Breed) {
         catImage.image = UIImage(named: "abys")
-        catName.text = "Abyssinian"
+        catName.text = breed.name
     }
     
     func configureCatImage() {

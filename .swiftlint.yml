@@ -44,6 +44,8 @@ variable_name:
     error: 3 # only error
   excluded: # excluded via string array
     - _id
+    - id
+    - life_span
     - URL
     - GlobalAPIKey
 reporter: "csv" # reporter type (xcode, json, csv, checkstyle)
