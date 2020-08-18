@@ -123,7 +123,7 @@ extension BreedsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextViewController = DescriptionViewController()
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         navigationController?.pushViewController(nextViewController, animated: true)
     }
     
