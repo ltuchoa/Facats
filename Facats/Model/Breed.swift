@@ -8,6 +8,13 @@
 
 import Foundation
 
+struct BreedElement: Codable {
+    let breeds: [Breed]
+    let id: String
+    let url: String
+    let width, height: Int
+}
+
 struct Breed: Codable {
     let weight: Weight
     let id, name: String
@@ -61,7 +68,6 @@ struct Breed: Codable {
     }
 }
 
-// MARK: - Weight
 struct Weight: Codable {
     let imperial, metric: String
 }

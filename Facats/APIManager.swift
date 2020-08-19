@@ -33,4 +33,24 @@ class APIManager {
         }
         task.resume()
     }
+    
+    func fetchBreedId(id: String,completionHandler: @escaping ([BreedElement]) -> Void) {
+        let task = session.dataTask(with: URL(string: "https://api.thecatapi.com/v1/images/search?breed_id=\(id)")!) { (data, response, error) in
+            
+            if error != nil {
+                print("Error: \(String(describing: error))")
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse,
+                      (200...299).contains(httpResponse.statusCode) else {
+                        print("Error with the response, unexpected status code: \(String(describing: response))")
+              return
+            }
+            if let data = data,
+                let breedElement = try? JSONDecoder().decode([BreedElement].self, from: data) {
+                completionHandler(breedElement)
+            }
+        }
+        task.resume()
+    }
 }
