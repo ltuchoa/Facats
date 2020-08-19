@@ -125,7 +125,7 @@ extension BreedsViewController: UITableViewDelegate, UITableViewDataSource {
         let nextViewController = DescriptionViewController()
         tableView.deselectRow(at: indexPath, animated: true)
         navigationController?.pushViewController(nextViewController, animated: true)
-        nextViewController.breedId = breeds[indexPath.row].id
+        nextViewController.breedId = filteredBreeds[indexPath.row].id
     }
     
 }
