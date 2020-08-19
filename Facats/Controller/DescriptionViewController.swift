@@ -18,6 +18,7 @@ class DescriptionViewController: UIViewController, TTGTextTagCollectionViewDeleg
     var temperamentArray: [String] = []
     var config = TTGTextTagConfig()
     let collectionView = TTGTextTagCollectionView()
+    let tableView = UITableView()
     let manager = APIManager()
     
     override func viewDidLoad() {
@@ -35,6 +36,7 @@ class DescriptionViewController: UIViewController, TTGTextTagCollectionViewDeleg
                 self.temperamentArray = self.temperament.components(separatedBy: ", ")
                 self.collectionView.addTags(self.temperamentArray, with: self.config)
                 self.view.reloadInputViews()
+                self.tableView.reloadData()
             }
         }
 
@@ -42,6 +44,7 @@ class DescriptionViewController: UIViewController, TTGTextTagCollectionViewDeleg
         setupNavBar()
         setupCatImage()
         setupTags()
+        setupTableView()
     }
     
     func setupNavBar(){
@@ -94,7 +97,7 @@ class DescriptionViewController: UIViewController, TTGTextTagCollectionViewDeleg
         collectionView.enableTagSelection = false
         
         view.addSubview(collectionView)
-        collectionView.frame = CGRect(x: 16, y: 312, width: Int(view.frame.size.width), height: 100)
+        collectionView.frame = CGRect(x: 16, y: 312, width: Int(view.frame.size.width), height: 25)
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -102,6 +105,70 @@ class DescriptionViewController: UIViewController, TTGTextTagCollectionViewDeleg
             collectionView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
         ])
+    }
+    
+    func setupTableView() {
+        view.addSubview(tableView)
+        setTableViewDelegates()
+        
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 16),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    func setTableViewDelegates() {
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+    
+}
+
+extension DescriptionViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        
+        if !breedElement.isEmpty {
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+                cell.textLabel?.text = "Description"
+            case 1:
+                cell.textLabel?.numberOfLines = 0
+                cell.textLabel?.text = breedElement[0].breeds[0].breedDescription
+            case 2:
+                cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+                cell.textLabel?.text = "Origin"
+            case 3:
+                cell.textLabel?.text = breedElement[0].breeds[0].origin
+            case 4:
+                cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+                cell.textLabel?.text = "Life Span"
+            case 5:
+                cell.textLabel?.text = breedElement[0].breeds[0].lifeSpan
+            default:
+                cell.textLabel?.text = "pensando"
+            }
+            
+        }
+        
+        return cell
     }
     
 }
@@ -117,5 +184,16 @@ extension UIImageView {
                 }
             }
         }
+    }
+    func applyshadowWithCorner(containerView : UIView, cornerRadious : CGFloat){
+        containerView.clipsToBounds = false
+        containerView.layer.shadowColor = UIColor.black.cgColor
+        containerView.layer.shadowOpacity = 1
+        containerView.layer.shadowOffset = CGSize.zero
+        containerView.layer.shadowRadius = 10
+        containerView.layer.cornerRadius = cornerRadious
+        containerView.layer.shadowPath = UIBezierPath(roundedRect: containerView.bounds, cornerRadius: cornerRadious).cgPath
+        self.clipsToBounds = true
+        self.layer.cornerRadius = cornerRadious
     }
 }
