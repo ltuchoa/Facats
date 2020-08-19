@@ -7,30 +7,41 @@
 //
 
 import UIKit
+import TTGTagCollectionView
 
-class DescriptionViewController: UIViewController {
+class DescriptionViewController: UIViewController, TTGTextTagCollectionViewDelegate {
 
     var breedId = String()
     var breedElement: [BreedElement] = []
     var catImage = UIImageView()
+    var temperament = String()
+    var temperamentArray: [String] = []
+    var config = TTGTextTagConfig()
+    let collectionView = TTGTextTagCollectionView()
     let manager = APIManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createTagConfig()
+
         manager.fetchBreedId(id: breedId) {
             (breedElement) in
             DispatchQueue.main.sync {
                 self.breedElement = breedElement
                 self.title = self.breedElement[0].breeds[0].name
                 self.catImage.load(url: URL(string: self.breedElement[0].url)!)
+                self.temperament = self.breedElement[0].breeds[0].temperament
+                self.temperamentArray = self.temperament.components(separatedBy: ", ")
+                self.collectionView.addTags(self.temperamentArray, with: self.config)
                 self.view.reloadInputViews()
             }
         }
-        
+
         view.backgroundColor = .white
         setupNavBar()
         setupCatImage()
+        setupTags()
     }
     
     func setupNavBar(){
@@ -67,6 +78,29 @@ class DescriptionViewController: UIViewController {
             catImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             catImage.heightAnchor.constraint(equalToConstant: 180)
             
+        ])
+    }
+    
+    func createTagConfig() {
+        config.backgroundColor = .actionColor
+        config.textColor = .white
+        config.borderColor = .none
+        config.cornerRadius = 8
+    }
+    
+    func setupTags() {
+        collectionView.alignment = .center
+        collectionView.delegate = self
+        collectionView.enableTagSelection = false
+        
+        view.addSubview(collectionView)
+        collectionView.frame = CGRect(x: 16, y: 312, width: Int(view.frame.size.width), height: 100)
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: catImage.bottomAnchor, constant: 16),
+            collectionView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
         ])
     }
     
