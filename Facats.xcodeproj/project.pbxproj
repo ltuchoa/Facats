@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -117,7 +117,6 @@
 				BEEA7C9E4B1148CC358D8CFC /* Pods-FacatsTests.debug.xcconfig */,
 				3D862609AC9B17BFB9CE701E /* Pods-FacatsTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -146,10 +145,10 @@
 		546F591324E4231000CFCCC3 /* Facats */ = {
 			isa = PBXGroup;
 			children = (
+				5473135F24EEA69F00204FF7 /* Managers */,
 				546F594C24E426CC00CFCCC3 /* Controller */,
 				546F594B24E426C600CFCCC3 /* View */,
 				546F594A24E426B800CFCCC3 /* Model */,
-				541DD80D24EAC623005B5B6A /* APIManager.swift */,
 				546F591424E4231000CFCCC3 /* AppDelegate.swift */,
 				546F591624E4231000CFCCC3 /* SceneDelegate.swift */,
 				546F594D24E42A1600CFCCC3 /* Colors.swift */,
@@ -205,6 +204,14 @@
 				541DD80924EABEEF005B5B6A /* DescriptionViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		5473135F24EEA69F00204FF7 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				541DD80D24EAC623005B5B6A /* APIManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		E05BE97CBD5763F6291DD8BC /* Frameworks */ = {

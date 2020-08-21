@@ -50,22 +50,95 @@ class DescriptionViewController: UIViewController, TTGTextTagCollectionViewDeleg
     func setupNavBar(){
         self.navigationController?.navigationBar.tintColor = .actionColor
         
-        let button = UIButton(type: .custom)
-        button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        button.setImage(UIImage(named: "star1"), for: .normal)
-        button.addTarget(self, action: #selector(favoriteCat), for: .touchUpInside)
+        let defaults = UserDefaults.standard
+        var myarray = defaults.stringArray(forKey: "Favorites") ?? [String]()
+        var barButton = UIBarButtonItem()
         
-        let barButton = UIBarButtonItem(customView: button)
-        barButton.customView?.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            barButton.customView!.widthAnchor.constraint(equalToConstant: 30),
-            barButton.customView!.heightAnchor.constraint(equalToConstant: 30)
-        ])
+        var isFavorite = false
+        if !myarray.isEmpty {
+            for index in 0..<myarray.count {
+                if breedId == myarray[index] {
+                    isFavorite = true
+                }
+            }
+        }
+        
+        if isFavorite {
+            barButton = changeFavoriteImg(favorite: isFavorite)
+        } else {
+            barButton = changeFavoriteImg(favorite: isFavorite)
+        }
+        
         self.navigationItem.rightBarButtonItem = barButton
     }
     
     @objc func favoriteCat() {
         
+        // LOAD FAVORITES
+        let defaults = UserDefaults.standard
+        var myarray = defaults.stringArray(forKey: "Favorites") ?? [String]()
+        
+        // ADD FAVORITE OR REMOVE FAVORITE
+        var isFavorite = false
+        var position: Int?
+        var barButton = UIBarButtonItem()
+        
+        if !myarray.isEmpty {
+            for index in 0..<myarray.count {
+                print(index)
+                print(myarray)
+                if breedId == myarray[index] {
+                    isFavorite = true
+                    position = index
+                    
+                }
+            }
+        }
+        
+        if isFavorite {
+            if position != nil {
+                myarray.remove(at: position!)
+            }
+            barButton = changeFavoriteImg(favorite: !isFavorite)
+        } else {
+            myarray.append(breedId)
+            barButton = changeFavoriteImg(favorite: !isFavorite)
+        }
+        
+        defaults.set(myarray, forKey: "Favorites")
+        self.navigationItem.rightBarButtonItem = barButton
+        print(myarray)
+    }
+    
+    func changeFavoriteImg(favorite: Bool) -> UIBarButtonItem {
+        var barButton = UIBarButtonItem()
+        if favorite {
+            let button = UIButton(type: .custom)
+            button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            button.setImage(UIImage(named: "star"), for: .normal)
+            button.addTarget(self, action: #selector(favoriteCat), for: .touchUpInside)
+            
+            barButton = UIBarButtonItem(customView: button)
+            barButton.customView?.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                barButton.customView!.widthAnchor.constraint(equalToConstant: 30),
+                barButton.customView!.heightAnchor.constraint(equalToConstant: 30)
+            ])
+
+        } else {
+            let button = UIButton(type: .custom)
+            button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            button.setImage(UIImage(named: "star1"), for: .normal)
+            button.addTarget(self, action: #selector(favoriteCat), for: .touchUpInside)
+            
+            barButton = UIBarButtonItem(customView: button)
+            barButton.customView?.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                barButton.customView!.widthAnchor.constraint(equalToConstant: 30),
+                barButton.customView!.heightAnchor.constraint(equalToConstant: 30)
+            ])
+        }
+        return barButton
     }
     
     func setupCatImage() {
