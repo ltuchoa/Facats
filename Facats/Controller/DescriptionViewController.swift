@@ -51,7 +51,7 @@ class DescriptionViewController: UIViewController, TTGTextTagCollectionViewDeleg
         self.navigationController?.navigationBar.tintColor = .actionColor
         
         let defaults = UserDefaults.standard
-        var myarray = defaults.stringArray(forKey: "Favorites") ?? [String]()
+        let myarray = defaults.stringArray(forKey: "Favorites") ?? [String]()
         var barButton = UIBarButtonItem()
         
         var isFavorite = false
