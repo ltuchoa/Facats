@@ -16,7 +16,7 @@ class BreedsViewController: UIViewController {
     var breeds: [Breed] = []
     var filteredBreeds: [Breed] = []
     var section: Int?
-    
+    var breedsData: [Breed] = []
     
     let manager = APIManager()
     
@@ -35,6 +35,9 @@ class BreedsViewController: UIViewController {
             (breeds) in
             DispatchQueue.main.async {
                 self.breeds = breeds
+                if self.searchBar.selectedScopeButtonIndex == 0 {
+                    self.breedsData = breeds
+                }
                 self.tableView.reloadData()
             }
         }
@@ -61,7 +64,17 @@ class BreedsViewController: UIViewController {
             segmentedControl.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
         ])
         
-        //segmentedControl.addTarget(self, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        segmentedControl.addTarget(self, action: #selector(segmentedButtonTapped), for: .valueChanged)
+    }
+    
+    @objc func segmentedButtonTapped (sender: UISegmentedControl) {
+        if section == 0 {
+            section = 1
+            loadSection()
+        } else {
+            section = 0
+            loadSection()
+        }
     }
     
     func setupSearchBar() {
@@ -106,7 +119,7 @@ extension BreedsViewController: UITableViewDelegate, UITableViewDataSource {
         if searchBar.text != "" {
             return filteredBreeds.count
         }
-        return breeds.count
+        return breedsData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -115,7 +128,7 @@ extension BreedsViewController: UITableViewDelegate, UITableViewDataSource {
         if searchBar.text != "" {
             breed = filteredBreeds[indexPath.row]
         } else {
-            breed = breeds[indexPath.row]
+            breed = breedsData[indexPath.row]
         }
         cell.set(breed: breed)
         return cell
@@ -126,7 +139,7 @@ extension BreedsViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         navigationController?.pushViewController(nextViewController, animated: true)
         if searchBar.searchTextField.text!.isEmpty {
-            nextViewController.breedId = breeds[indexPath.row].id
+            nextViewController.breedId = breedsData[indexPath.row].id
         } else {
             nextViewController.breedId = filteredBreeds[indexPath.row].id
         }
@@ -139,11 +152,11 @@ extension BreedsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             self.searchBar(searchBar, selectedScopeButtonIndexDidChange: section!)
-            filteredBreeds = breeds
+            filteredBreeds = breedsData
             tableView.reloadData()
         } else {
             self.searchBar(searchBar, selectedScopeButtonIndexDidChange: section!)
-            filteredBreeds = breeds.filter({ breed -> Bool in
+            filteredBreeds = breedsData.filter({ breed -> Bool in
                 breed.name.lowercased().contains(searchText.lowercased())
             })
         }
@@ -152,7 +165,16 @@ extension BreedsViewController: UISearchBarDelegate {
     }
 
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        //filteredBreeds = breeds
+        switch selectedScope {
+        case 0:
+            breedsData = breeds
+        case 1:
+            let defaults = UserDefaults.standard
+            let myarray = defaults.stringArray(forKey: "Favorites") ?? [String]()
+            breedsData = breeds.filter({ myarray.contains($0.id) })
+        default:
+            break
+        }
         section = selectedScope
         tableView.reloadData()
     }
